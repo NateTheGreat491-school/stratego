@@ -61,24 +61,24 @@ public class Stratego {
                 "Options:\n"+
                 "------------------------------\n"+
                 "    1. [S]how Configurations\n"+
-                "    2. [T]oggle Player]\n"+
+                "    2. [T]oggle Player\n"+
                 "    3. [a] Edit config A\n"+
                 "    4. [b] Edit config B\n"+
                 "    5. [c] Edit config C\n\n"+
 
                 " : ",
-                Utility.martStrArrayItem("[]", player, {"1", "2"})
+                Utility.markStrArrayItem("[]", player, {"1", "2"})
             );
 
             String response = userin.nextLine();
             System.out.print("\n\n");
 
             switch (response) {
-                case "s", "1" -> (player==0) ? this.player1.showConfigs() : this.player2.showConfigs();
+                case "s", "1" -> getActivePlayer().showConfigs();
                 case "t", "2" -> player = (player==1) ? 0 : 1;
-                case "a"      -> (player==0) ? this.player1.editConfig(0) : this.player2.editConfig(0);
-                case "b"      -> (player==0) ? this.player1.editConfig(1) : this.player2.editConfig(1);
-                case "c"      -> (player==0) ? this.player1.editConfig(2) : this.player2.editConfig(2);
+                case "a"      -> getActivePlayer().editConfig(0);
+                case "b"      -> getActivePlayer().editConfig(1);
+                case "c"      -> getActivePlayer().editconfig(2);
                 default       -> Utility.showWarning("Invalid Selection!");
             }
             
@@ -87,7 +87,9 @@ public class Stratego {
         }
     }
 
-    private void 
+    private Player getActivePlayer(int player) {
+        return (player == 0) ? this.player1 : this.player2
+    }
     
     private void editSettings() {
         String menuTemplate = """

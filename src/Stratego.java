@@ -22,6 +22,8 @@ public class Stratego {
 
     private static Scanner userin = new Scanner(System.in);
 
+    private stats = new Stats(Utility.SAVEFILE);
+
     public static void main() {
         
         while (true) {
@@ -49,7 +51,26 @@ public class Stratego {
     
     private void editSettings() {}
 
-    private static void showStats() {}
+    private static void showStats() {
+        System.out.printf(
+            "Total Games: %d\n"+
+            "    p1 wins: %d\n"+
+            "    p2 wins: %d\n"+
+            "      draws: %d\n\n"+
+
+            "Captures Made: %d\n"+
+            "Bombs Defused: %d\n"+
+            "Marshalls KIA: %d\n\n"+
+
+            "Time Played: %s\n"+
+            "[return to home]",
+            stats.gameCount, stats.p1WinCount,
+            stats.p2WinCount, stats.drawCount,
+            stats.captureCount, stats.defuseCount,
+            stats.marshallBodyCount,
+            Utility.getStrTime(stats.secondsPlayed)
+        );
+    }
 
     private static void showHome() {
         Utility.showBanner();

@@ -13,10 +13,14 @@ Pieces.java
     1. Add fields
             public final String[] STYLES
             public final String[] COLORS
+            public String[] configurations;
+            public int activeConfigIdx
             public int activeStyleIdx
             public int activeColoridx
     2. Add Pieces.setStyle(String type)
     3. Add Pieces.setColor(String color)
+    4. Add Pieces.showConfigs()
+    5. Add Pieces.editConfig(int n)
 
 Board.java
 ------------------------------------------------------------
@@ -24,6 +28,7 @@ Board.java
             public final String[] MAPTYPES
             public int activeMapIdx
     2. Add Board.setMapType(String type) method
+    3. Add Board.showBoard(Player p1, Player p2);
 
 Stats.java
 ------------------------------------------------------------
@@ -42,8 +47,8 @@ Utility.java
     1. Add Utility.handlExit() : clears screen, gives exit msg
     2. Add Utility.SAVEFILE variable : path to file where stats stored
     3. Add Utility.showWarning(String msg) : displays a warning to the user
-    4. Add Utility.getStrTime(int seconds) : converts int seconds into Y:D:H:M:S
-    5. Add Utility.markStrArrayItem( String marker, int index) : marks item[index] with marker and returns Str version of that array
+    4. Add Utility.getStrTime(String format, int seconds) : converts int seconds into Y:D:H:M:S
+    5. Add Utility.markStrArrayItem( String marker, int index, String[] list) : marks item[index] with marker and returns Str version of that array
 
 
 README.md

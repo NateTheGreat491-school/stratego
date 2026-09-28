@@ -11,9 +11,20 @@ Stratego.java
 
 Pieces.java
 ------------------------------------------------------------
+    1. Add fields
+            public final String[] STYLES
+            public final String[] COLORS
+            public int activeStyleIdx
+            public int activeColoridx
+    2. Add Pieces.setStyle(String type)
+    3. Add Pieces.setColor(String color)
 
 Board.java
 ------------------------------------------------------------
+    1. Add fields
+            public final String[] MAPTYPES
+            public int activeMapIdx
+    2. Add Board.setMapType(String type) method
 
 Stats.java
 ------------------------------------------------------------
@@ -33,6 +44,8 @@ Utility.java
     2. Add Utility.SAVEFILE variable : path to file where stats stored
     3. Add Utility.showWarning(String msg) : displays a warning to the user
     4. Add Utility.getStrTime(int seconds) : converts int seconds into Y:D:H:M:S
+    5. Add Utility.markStrArrayItem( String marker, int index) : marks item[index] with marker and returns Str version of that array
+
 
 README.md
 ------------------------------------------------------------

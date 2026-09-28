@@ -8,7 +8,6 @@ Stratego.java
     4. Add showHistoryOfGame() for ruleViewer() in main()
     5. Add editConfig() for main()
     6. Add editSettings() for main()
-    7. Add showStats() for main()
 
 Pieces.java
 ------------------------------------------------------------
@@ -18,9 +17,22 @@ Board.java
 
 Stats.java
 ------------------------------------------------------------
+    1. Add fields
+            public int gameCount
+            public int p1WinCount
+            public int p2WinCount
+            public int drawCount
+            public int captureCount
+            public int defuseCount
+            public int marshallBodyCount
+            public int secondsPlayed
 
 Utility.java
 ------------------------------------------------------------
+    1. Add Utility.handlExit() : clears screen, gives exit msg
+    2. Add Utility.SAVEFILE variable : path to file where stats stored
+    3. Add Utility.showWarning(String msg) : displays a warning to the user
+    4. Add Utility.getStrTime(int seconds) : converts int seconds into Y:D:H:M:S
 
 README.md
 ------------------------------------------------------------

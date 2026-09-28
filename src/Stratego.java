@@ -21,13 +21,11 @@
 public class Stratego {
 
     private static Scanner userin = new Scanner(System.in);
-
     private stats = new Stats(Utility.SAVEFILE);
 
     public static void main() {
         
         while (true) {
-
             showHome();
 
             String response = userin.nextLine();
@@ -45,12 +43,53 @@ public class Stratego {
 
             userin.nextLine();
         }
-    } 
+    }
 
-    private void editConfig() {}
+    private void playGame() {
+
+
+
+    }
+
+    private void editConfig() {
+        int player = 0;
+
+        while (true) {
+            System.out.printf(
+                "Player: %s\n\n"+
+
+                "Options:\n"+
+                "------------------------------\n"+
+                "    1. [S]how Configurations\n"+
+                "    2. [T]oggle Player]\n"+
+                "    3. [a] Edit config A\n"+
+                "    4. [b] Edit config B\n"+
+                "    5. [c] Edit config C\n\n"+
+
+                " : ",
+                Utility.martStrArrayItem("[]", player, {"1", "2"})
+            );
+
+            String response = userin.nextLine();
+            System.out.print("\n\n");
+
+            switch (response) {
+                case "s", "1" -> (player==0) ? this.player1.showConfigs() : this.player2.showConfigs();
+                case "t", "2" -> player = (player==1) ? 0 : 1;
+                case "a"      -> (player==0) ? this.player1.editConfig(0) : this.player2.editConfig(0);
+                case "b"      -> (player==0) ? this.player1.editConfig(1) : this.player2.editConfig(1);
+                case "c"      -> (player==0) ? this.player1.editConfig(2) : this.player2.editConfig(2);
+                default       -> Utility.showWarning("Invalid Selection!");
+            }
+            
+            System.out.print("[continue]");
+            userin.nextLine();
+        }
+    }
+
+    private void 
     
     private void editSettings() {
-
         String menuTemplate = """
             [M]ap: %s
 
@@ -75,11 +114,11 @@ public class Stratego {
             Utility.showBanner("b=back");
             System.out.printf(
                 menuTemplate,
-                Utility.markStrArrayItem( "[]", this.board.activeMapIdx ),
-                Utility.markStrArrayItem( "[]", this.player1.activeStyleIdx ),
-                Utility.markStrArrayItem( "[]", this.player2.activeStyleIdx ),
-                Utility.markStrArrayItem( "[]", this.player1.activeColorIdx ),
-                Utility.markStrArrayItem( "[]", this.player2.activeColorIdx)
+                Utility.markStrArrayItem( "[]", this.board.activeMapIdx,     Board.MAPTYPES ),
+                Utility.markStrArrayItem( "[]", this.player1.activeStyleIdx, Pieces.STYLES  ),
+                Utility.markStrArrayItem( "[]", this.player2.activeStyleIdx, Pieces.STYLES  ),
+                Utility.markStrArrayItem( "[]", this.player1.activeColorIdx, Pieces.COLORS  ),
+                Utility.markStrArrayItem( "[]", this.player2.activeColorIdx, Pieces.COLORS  )
             );
             
 
@@ -156,7 +195,7 @@ public class Stratego {
             stats.p2WinCount, stats.drawCount,
             stats.captureCount, stats.defuseCount,
             stats.marshallBodyCount,
-            Utility.getStrTime(stats.secondsPlayed)
+            Utility.getStrTime("Y:D:H:M", stats.secondsPlayed)
         );
     }
 
@@ -176,7 +215,6 @@ public class Stratego {
     }
 
     private static void ruleViewer() {
-        
         while (true) {
             Utility.showBanner("b=back;");
             System.out.print(

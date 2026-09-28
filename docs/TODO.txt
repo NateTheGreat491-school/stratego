@@ -1,0 +1,11 @@
+CLI Statego TODO lisrt
+
+Stratego.java
+------------------------------------------------------------
+    1. Add showMovementRules() for ruleViewer() in main()
+    2. Add showPieceOverview() for ruleViewer() in main()
+    3. Add showGameObjective() for ruleViewer() in main()
+    4. Add showHistoryOfGame() for ruleViewer() in main()
+    5. Add editConfig() for main()
+    6. Add editSettings() for main()
+    7. Add showStats() for main()

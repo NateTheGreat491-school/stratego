@@ -81,48 +81,61 @@ public class Stratego {
                 Utility.markStrArrayItem( "[]", this.player1.activeColorIdx ),
                 Utility.markStrArrayItem( "[]", this.player2.activeColorIdx)
             );
+            
 
+            // [command] [map type || player] [color || style]
             String[] response = userin.nextLine().trim().toLowerCase();
             System.out.print("\n\n");
             
+            // check for no input
             if (input.isEmpty()) {
                 Utility.showWarning("Invalid Selection!");
                 continue;
             }
-
+            
+            // ensure there is at least 2 strings
             String[] parts = input.split("\\s+");
             if (parts.length < 2) {
                 Utility.showWarning("Invalid Selection!");
                 continue
             }
-
+            
             String command = parts[0];
 
             switch (command) {
-
                 case "m", "map"   -> this.board.setMapType(parts[1]);
-                case "p", "piece" -> 
-                case "c", "color" -> 
-            }
-
-
-            switch (response[0]) {
-                case "m", "map":
-                    if (response[1] == "1") {
-                        this.player1.setStyle(response[2]);
-                    } else if (response[1] == "2") {
-                        this.player2.setStyle(response[2]);
-                    } else {
-                        Utility.showWarning("Invalid Selection!");
-                    }
-                case "p", "piece" ->
-                case "c", "color" ->
+                case "p", "piece" -> parseSettingsCommand(parts, "style"); 
+                case "c", "color" -> parseSettingsCommand(parts, "color");
                 case "b", "back"  -> return;
                 case "q", "quit"  -> Utility.handleExit();
                 default -> Utility.showWarning("Invalid Selection!");
             }
+        }
+    }
+    
+    /*
+     * called in editSettings(): changes player 1||2  color && style
+     *
+     * @param parts = {player, selection}
+     * @param type  = color || style
+     */
+    private void parseSettingsCommand(String[] parts, String type) {
+        if (parts.length < 3) {
+            Utility.showWarning("Invalid Selection!");
+            return;
+        }
+        
+        // handle player
+        Player target = switch (parts[1]) {
+            case "1" -> this.player1;
+            case "2" -> this.player2;
+            default  -> {Utility.showWarning("Invalid Selection!"); return;}
+        }
 
-            System.print("[continue]");
+        if ("style".equals(type)) {
+            target.setStyle(parts[2]);
+        } else if ("color".equals(type)) {
+            target.setColor(parts[2]);
         }
     }
     

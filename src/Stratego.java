@@ -11,11 +11,11 @@
    */
   
   /**
-   * Assignment 4a: Standalone Person Info App
+   * Final Project: CLI Statego Game
    *
    * @author Nathan W. Barros (nwbarros@students.unwsp.edu)
    * @course COS 3271
-   * @version 1.1.0
+   * @version 1.0.0
    */
   
 public class Stratego {
@@ -87,8 +87,8 @@ public class Stratego {
             switch (response.toLowerCase()) {
                 case "m", "1" -> showMovementRules();
                 case "p", "2" -> showPieceOverview();
-                case "o", "3" -> showGameObjectives();
-                case "h", "4" -> showHistoryOfStratego();
+                case "o", "3" -> showGameObjective();
+                case "h", "4" -> showHistoryOfGame();
                 case "b"      -> return;
                 case "q"      -> Utility.handleExit();
                 default       -> Utility.showWarning("Invalid Selection!");
@@ -103,9 +103,9 @@ public class Stratego {
 
     private static void showPieceOverview() {}
 
-    private static void showGameObjectives() {}
+    private static void showGameObjective() {}
 
-    private static void showHistoryOfStratego() {}
+    private static void showHistoryOfGame() {}
 }
 
 // EOF

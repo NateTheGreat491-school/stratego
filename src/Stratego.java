@@ -49,8 +49,83 @@ public class Stratego {
 
     private void editConfig() {}
     
-    private void editSettings() {}
+    private void editSettings() {
 
+        String menuTemplate = """
+            [M]ap: %s
+
+            [P]ieces:
+                player [1] -> %s
+                player [2] -> %s
+
+            [C]olor:
+                player [1] -> %s
+                player [2] -> %s
+
+            Examples:
+            ------------------------------------------------------
+                m standard   = set map to standard
+                p 2 standard = set player 2 pieces to standard
+                c 1 blue     = set player 1 color to blue
+
+             : 
+            """;
+    
+        while (true) {
+            Utility.showBanner("b=back");
+            System.out.printf(
+                menuTemplate,
+                Utility.markStrArrayItem( "[]", this.board.activeMapIdx ),
+                Utility.markStrArrayItem( "[]", this.player1.activeStyleIdx ),
+                Utility.markStrArrayItem( "[]", this.player2.activeStyleIdx ),
+                Utility.markStrArrayItem( "[]", this.player1.activeColorIdx ),
+                Utility.markStrArrayItem( "[]", this.player2.activeColorIdx)
+            );
+
+            String[] response = userin.nextLine().trim().toLowerCase();
+            System.out.print("\n\n");
+            
+            if (input.isEmpty()) {
+                Utility.showWarning("Invalid Selection!");
+                continue;
+            }
+
+            String[] parts = input.split("\\s+");
+            if (parts.length < 2) {
+                Utility.showWarning("Invalid Selection!");
+                continue
+            }
+
+            String command = parts[0];
+
+            switch (command) {
+
+                case "m", "map"   -> this.board.setMapType(parts[1]);
+                case "p", "piece" -> 
+                case "c", "color" -> 
+            }
+
+
+            switch (response[0]) {
+                case "m", "map":
+                    if (response[1] == "1") {
+                        this.player1.setStyle(response[2]);
+                    } else if (response[1] == "2") {
+                        this.player2.setStyle(response[2]);
+                    } else {
+                        Utility.showWarning("Invalid Selection!");
+                    }
+                case "p", "piece" ->
+                case "c", "color" ->
+                case "b", "back"  -> return;
+                case "q", "quit"  -> Utility.handleExit();
+                default -> Utility.showWarning("Invalid Selection!");
+            }
+
+            System.print("[continue]");
+        }
+    }
+    
     private static void showStats() {
         System.out.printf(
             "Total Games: %d\n"+

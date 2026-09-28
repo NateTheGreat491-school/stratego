@@ -9,3 +9,29 @@ Stratego.java
     5. Add editConfig() for main()
     6. Add editSettings() for main()
     7. Add showStats() for main()
+
+Pieces.java
+------------------------------------------------------------
+
+Board.java
+------------------------------------------------------------
+
+Stats.java
+------------------------------------------------------------
+
+Utility.java
+------------------------------------------------------------
+
+README.md
+------------------------------------------------------------
+
+Makefile
+------------------------------------------------------------
+
+
+Documentation
+------------------------------------------------------------
+    1. Add Documentation for Stratego class & Operation
+    2. Add Documentation for Pieces class
+    3. Add Documentation for Board class
+    4. Add Documentation for Utility class & functions

@@ -7,6 +7,10 @@ Stratego.java
     3. Add showGameObjective() for ruleViewer() in main()
     4. Add showHistoryOfGame() for ruleViewer() in main()
     5. Add editConfig() for main()
+    6. Add fields
+            private Player player1
+            private Player player2
+            private Board board
 
 Pieces.java
 ------------------------------------------------------------
@@ -14,13 +18,15 @@ Pieces.java
             public final String[] STYLES
             public final String[] COLORS
             public String[] configurations;
-            public int activeConfigIdx
+            private String activeConfig;
             public int activeStyleIdx
             public int activeColoridx
     2. Add Pieces.setStyle(String type)
     3. Add Pieces.setColor(String color)
     4. Add Pieces.showConfigs()
     5. Add Pieces.editConfig(int n)
+    6. Add Pieces.selectConfig()
+    7. Add Pieces.getActiveConfig()
 
 Board.java
 ------------------------------------------------------------

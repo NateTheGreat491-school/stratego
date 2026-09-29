@@ -44,11 +44,51 @@ public class Stratego {
             userin.nextLine();
         }
     }
-
+    
+    /*
+     * Runs the stratego game in the terminal
+     *
+     *  LOGIC:
+     *      -> Players select game configurations
+     *      -> Board is built with chosen configs
+     *      -> LOOP: 
+     *      ->> Waiting screen is shown              
+     *      ->> Board is shown from perspective      
+     *      ->> Moves are handled                
+     *      ->> Win cases are checked && winner shown
+     *      ->> player perspective is toggled
+     */
     private void playGame() {
+        this.player1.selectConfig();
+        this.player2.selectConfig();
+        
+        String config1 = this.player1.getActiveConfig();
+        String config2 = this.player2.getActiveConfig();
+        this.board.buildGame(config1, config2);
 
+        while (true) {
+            Utility.showBanner();
+            System.out.printf("It is player %d's turn...", this.board.getPerspective());
+            String playerMove = userin.nextLine();
 
+            this.board.showGame();
+            playerMove = userin.nextLine().trim().toLowerCase();
+            
+            if (! Board.isValidMove()) {
+                Utility.showWarning("Invalid Move!");
+                continue;
+            }
 
+            this.board.playMove(playerMove);
+
+            if (! this.board.checkForWin()) {
+                this.board.togglePerspective();
+                continue;
+            }
+
+            this.board.showWinner();
+            break;
+        }
     }
 
     private void editConfig() {
@@ -117,10 +157,10 @@ public class Stratego {
             System.out.printf(
                 menuTemplate,
                 Utility.markStrArrayItem( "[]", this.board.activeMapIdx,     Board.MAPTYPES ),
-                Utility.markStrArrayItem( "[]", this.player1.activeStyleIdx, Pieces.STYLES  ),
-                Utility.markStrArrayItem( "[]", this.player2.activeStyleIdx, Pieces.STYLES  ),
-                Utility.markStrArrayItem( "[]", this.player1.activeColorIdx, Pieces.COLORS  ),
-                Utility.markStrArrayItem( "[]", this.player2.activeColorIdx, Pieces.COLORS  )
+                Utility.markStrArrayItem( "[]", this.player1.getStyleIdx, Pieces.STYLES  ),
+                Utility.markStrArrayItem( "[]", this.player2.getStyleIdx, Pieces.STYLES  ),
+                Utility.markStrArrayItem( "[]", this.player1.getColorIdx, Pieces.COLORS  ),
+                Utility.markStrArrayItem( "[]", this.player2.getColorIdx, Pieces.COLORS  )
             );
             
 

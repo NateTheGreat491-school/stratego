@@ -268,7 +268,6 @@ public class Stratego {
                 "    1. [M]ovement & Captures\n"+
                 "    2. [P]iece Overview\n"+
                 "    3. [O]bjectives\n"+
-                "    4. [H]istory\n\n"+
 
                 " : "
             );
@@ -280,7 +279,6 @@ public class Stratego {
                 case "m", "1" -> showMovementRules();
                 case "p", "2" -> showPieceOverview();
                 case "o", "3" -> showGameObjective();
-                case "h", "4" -> showHistoryOfGame();
                 case "b"      -> return;
                 case "q"      -> Utility.handleExit();
                 default       -> Utility.showWarning("Invalid Selection!");
@@ -295,9 +293,29 @@ public class Stratego {
 
     private static void showPieceOverview() {}
 
-    private static void showGameObjective() {}
+    private static void showGameObjective() {
+        System.out.print(
+            "          On a lonely battlefield you meet your opponent\n"+
+            "       for a skirmish that will decide the fate of your army.\n"+
+            "           You must plan the battle, advance your men,\n"+
+            "                attack and capture the enemy Flag.\n\n"+
+            
+            "         Your Marshal is your strongest man but vulnerable\n"+
+            "        if not protected from the Spy. Your Scouts are weak\n"+
+            "           but mobile and effective in discovering your\n"+
+            "          enemy's manpower. You need the skills of Miners\n"+
+            "           to disarm enemy Bombs. so don't lose them all\n"+
+            "          early in the battle. Plant your Bombs skillfully.\n"+
+            "             They will protect the most precious piece\n"+
+            "                    on the gameboard, your Flag.\n\n"+
+            
+            "             STRATEGO is a game where skillful planning,\n"+
+            "              clever deception and good memory work are\n"+
+            "           used to defeat your opponent. Every time you play,\n"+
+            "                      the battle is different.\n\n"+
+        );
 
-    private static void showHistoryOfGame() {}
+    }
 }
 
 // EOF

@@ -19,12 +19,14 @@
    */
   
 public class Stratego {
-
     private static Scanner userin = new Scanner(System.in);
-    private stats = new Stats(Utility.SAVEFILE);
 
-    public static void main() {
-        
+    private Pieces player1 = new Pieces();
+    private Pieces player2 = new Pieces();
+    private Board  board   = new Board();
+    private Stats  stats   = new Stats(Utility.SAVEFILE);
+
+    public static void main() { 
         while (true) {
             showHome();
 
@@ -62,31 +64,32 @@ public class Stratego {
         this.player1.selectConfig();
         this.player2.selectConfig();
         
-        String config1 = this.player1.getActiveConfig();
-        String config2 = this.player2.getActiveConfig();
-        this.board.buildGame(config1, config2);
+        this.board.buildGame(
+            this.player1.getActiveConfig(),
+            this.player2.getActiveConfig()
+        );
 
         while (true) {
             Utility.showBanner();
             System.out.printf("It is player %d's turn...", this.board.getPerspective());
-            String playerMove = userin.nextLine();
+            String playerMove = userin.nextLine(); // wait for user
 
             this.board.showGame();
+
             playerMove = userin.nextLine().trim().toLowerCase();
-            
-            if (! Board.isValidMove()) {
+            if (! Board.isValidMove(playerMove)) {
                 Utility.showWarning("Invalid Move!");
                 continue;
             }
 
             this.board.playMove(playerMove);
-
             if (! this.board.checkForWin()) {
                 this.board.togglePerspective();
                 continue;
             }
 
-            this.board.showWinner();
+            System.out.print("Player %d wins!", this.board.getPerspective());
+            this.stats.addGameStats( this.board.getGameStats() );
             break;
         }
     }
@@ -233,11 +236,11 @@ public class Stratego {
 
             "Time Played: %s\n"+
             "[return to home]",
-            stats.gameCount, stats.p1WinCount,
-            stats.p2WinCount, stats.drawCount,
-            stats.captureCount, stats.defuseCount,
-            stats.marshallBodyCount,
-            Utility.getStrTime("Y:D:H:M", stats.secondsPlayed)
+            this.stats.gameCount,    this.stats.p1WinCount,
+            this.stats.p2WinCount,   this.stats.drawCount,
+            this.stats.captureCount, this.stats.defuseCount,
+            this.stats.marshallBodyCount,
+            Utility.getStrTime("Y:D:H:M", this.stats.secondsPlayed)
         );
     }
 

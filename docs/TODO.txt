@@ -17,16 +17,15 @@ Pieces.java
     1. Add fields
             public final String[] STYLES
             public final String[] COLORS
-            public String[] configurations;
-            private String activeConfig;
-            public int activeStyleIdx
-            public int activeColoridx
+            private String[] configurations;
     2. Add Pieces.setStyle(String type)
     3. Add Pieces.setColor(String color)
     4. Add Pieces.showConfigs()
     5. Add Pieces.editConfig(int n)
     6. Add Pieces.selectConfig()
     7. Add Pieces.getActiveConfig()
+    8. Add Pieces.getStyleIdx()
+    9. Add Pieces.getColorIdx()
 
 Board.java
 ------------------------------------------------------------
@@ -34,7 +33,13 @@ Board.java
             public final String[] MAPTYPES
             public int activeMapIdx
     2. Add Board.setMapType(String type) method
-    3. Add Board.showBoard(Player p1, Player p2);
+    3. Add Board.showGame()
+    4. Add Board.buildGame(String config1, String config2);
+    5. Add Board.getPerspective()
+    6. Add Board.isValidMove()
+    7. Add Board.playMove()
+    8. Add Board.checkForWin()
+    9. Add Board.togglePerspective()
 
 Stats.java
 ------------------------------------------------------------
